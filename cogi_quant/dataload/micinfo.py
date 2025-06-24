@@ -13,7 +13,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns last updated price of the stock.   
 
-        **Usage**
+        **Examples**
 
         >>> Stock("AAPL").get_current_price()
         >>> 198.91 
@@ -27,7 +27,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns previous day close price.
 
-        **Usage**
+        **Examples**
 
         >>> Stock("AAPL").get_previous_close()
         >>> 198.71
@@ -38,7 +38,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns current day open price.
 
-        **Usage**
+        **Examples**
 
         >>> Stock("AAPL").get_current_day_open()
         >>> 198.77
@@ -49,7 +49,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns current day low price.
 
-        **Usage**
+        **Examples**
 
         >>> Stock("AAPL").get_current_day_low()
         >>> 197.90
@@ -60,7 +60,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns current day high price.
 
-        **Usage**
+        **Examples**
 
         >>> Stock("AAPL").get_current_day_high()
         >>> 199.52
@@ -71,7 +71,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns current beta value for stock.
 
-        **Usage**
+        **Examples**
         
         >>> Stock("AAPL").get_beta()
         >>> 1.2
@@ -82,7 +82,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns current trailing P/E value for stock.
 
-        **Usage**
+        **Examples**
         
         >>> Stock("AAPL").get_PE_trailing()
         >>> 30.70
@@ -93,7 +93,7 @@ class Stock(macinfo.SoftInfo):
         '''
         Returns current forward P/E value for stock.
 
-        **Usage**
+        **Examples**
         
         >>> Stock("AAPL").get_PE_forward()
         >>> 28.57
@@ -124,7 +124,7 @@ class Stock(macinfo.SoftInfo):
         :param period: If start, end are left as None, use period ('1d', '1w' '1mo', '3mo', '6mo', '1y', '2y')
         :param interval: Time interval between quotes ('1m', '1d')
 
-        **Usage**
+        **Examples**
 
         >>> stock.get_quote_frame(start=None, end=None, period='6mo', interval=None)
         >>> stock.get_quote_frame(start='2025-01-01', end='2025-06-10')
