@@ -1,3 +1,3 @@
 # cogi-quant
 
-Quantitative toolkit for market analysis.
+Python toolkit for quantitative market analysis.
