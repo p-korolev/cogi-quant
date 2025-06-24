@@ -1,7 +1,7 @@
 from __future__ import annotations
 import numpy as np
-from typing import Union, List, Any
-
+import pandas as pd
+from typing import Union, Optional, Any
 
 class PairedSet():
     def __init__(self, indexing_array: Any = None, value_array: Any = None):
@@ -105,6 +105,53 @@ class PairedSet():
             raise TypeError("Expected PairedSet or two values.")
         
     def get_corresponding_Yvalue(self, X_value: np.float64) -> np.float64:
+        '''
+        Returns corresponding Y value to first appearing X_value.
+
+        **Usage**
+        If a paired set contains dates as indexing_list X, and instrument price as value_list Y, get the instrument price of date X_value = '2025-12-05'.
+
+        **Examples**
+
+        >>> P = PairedSet(indexing_array=['2025-12-03', '2025-11-03', '2025-10-03'], value_array=[110.33, 108.61, 101.99])
+        >>> P.get_corresponding_Yvalue(X_value='2025-11-03')
+        108.61
+        '''
         exists = False
         if self.X==None or self.Y==None: 
             return None
+        for index_value in self.X:
+            if index_value == X_value:
+                pass
+    
+    def to_series(self, indexing_name: Optional[str] = None) -> pd.Series:
+        '''
+        Returns PairedSet object as a pd.Series object, where self.X becomes the series index.
+
+        **Usage**
+        Easing conversion process of PairedSet data structures and printing views.
+
+        **Examples**
+
+        >>> P = PairedSet(['2025-12-01', '2025-12-02', '2025-12-03', '2025-12-04'], [100.0, 101.0, 102.0, 103.0])
+        >>> print(P.to_series(indexing_name='Date'))
+        Date
+        2025-12-01    100.0
+        2025-12-02    101.0
+        2025-12-03    102.0
+        2025-12-04    103.0
+        '''
+        idx = pd.Index(self.X, name=indexing_name)
+        return pd.Series(self.Y, index=idx)
+    
+    def npfloat_values(self) -> None:
+        '''
+        Converts all values in the value array to npfloat64.
+
+        **Usage**
+
+        Cleaning dtype of time series data.
+        '''
+        self.Y = self.Y.astype(np.float64, copy=False)
+
+                
