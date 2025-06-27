@@ -1,7 +1,7 @@
 from datetime import datetime
 import pandas as pd
 import numpy as np
-from dataload.micinfo import Stock 
+from cogi_quant.dataload.quote import Stock 
 
 from typing import Union, Any 
 
