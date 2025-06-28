@@ -1,14 +1,18 @@
 from __future__ import annotations
+from datetime import datetime
+
 import yfinance as fin
 import numpy as np
 import pandas as pd
-from datetime import datetime
 
 class CompanyProfile():
     def __init__(self, ticker: str):
         self.ticker_name = ticker
         self.load = fin.Ticker(ticker) 
     
+    def get_company(self) -> str:
+        return self.load.info.get("longName")
+
     def get_company_industry(self, display_industry_key=False) -> str:
         '''
         Returns the industry which the company is in.
@@ -20,8 +24,8 @@ class CompanyProfile():
             return self.load.info.get("industryKey")
         return self.load.info.get("industry")
     
-    def same_industry(self, company_soft_info: CompanyProfile) -> bool:
-        return self.get_company_industry==company_soft_info.get_company_industry()
+    def same_industry(self, other: CompanyProfile) -> bool:
+        return self.get_company_industry==other.get_company_industry()
 
     def get_company_sector(self, display_sector_key=False) -> str:
         '''
@@ -34,8 +38,8 @@ class CompanyProfile():
             return self.load.get("sectorKey")
         return self.load.info.get("sector")
     
-    def eq_sector(self, company_soft_info: CompanyProfile) -> bool:
-        return self.get_company_sector()==company_soft_info.get_company_sector()
+    def eq_sector(self, other: CompanyProfile) -> bool:
+        return self.get_company_sector()==other.get_company_sector()
     
     def view_sector(self, viewlen: int = 5) -> bool:
         '''
@@ -69,3 +73,6 @@ class CompanyProfile():
     def get_company_number_employees(self) -> np.int64:
         return np.int64(self.load.info.get("employees"))
     
+    def summary(self) -> str:
+        return self.load.info.get("longBusinessSummary")
+

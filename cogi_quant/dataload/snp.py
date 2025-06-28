@@ -1,5 +1,6 @@
-import pandas as pd
 from typing import Union, List, Dict
+
+import pandas as pd
 
 # main loading source for s&p500 company list
 url='https://en.wikipedia.org/wiki/List_of_S%26P_500_companies'
