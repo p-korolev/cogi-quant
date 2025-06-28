@@ -2,7 +2,7 @@
 
 ## **Overview**
 
-`cogi-quant` is a modular Python library designed to make **quantitative finance workflows** easier, faster, and more intuitive. Whether you're an algorithmic trader, a data analyst, or a researcher, this toolkit offers **data fetching**, **time series visualization**, **statistical computation**, and **custom financial structures** to support rapid market experimentation.
+`cogi-quant` is a Python library designed to enable and ease quantitative market analysis. This toolkit currently offers **qualitative company information fetching**, **historical quantitative market data fetching**, **market technicals**, and **series processing**. Future versions aim to include **time series plotting**, **live market data processing**, **market order simulations**, **strategy testing**, and much more.
 
 ---
 
