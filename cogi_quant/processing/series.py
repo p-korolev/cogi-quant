@@ -3,7 +3,7 @@
 import pandas as pd
 import numpy as np
 from datetime import datetime
-from typing import Union, Any 
+from typing import Union, Any, Optional
 
 from cogi_quant.objects import pairedset
 
@@ -49,8 +49,6 @@ def fill(series: pd.Series, filling_type: str = 'ffill') -> pd.Series:
         series_copy.iloc[0] = mean_series
     return series_copy.ffill()
 
-
-from typing import Optional
 def normalize_series(series: pd.Series, normalization_method: Optional[str]) -> pd.Series:
     '''
     Return normalized series where values range from [0,1] inclusive using minmax method. If 'z' is specified as normalization_method, use z-score method.
@@ -103,7 +101,6 @@ def normalize_series(series: pd.Series, normalization_method: Optional[str]) -> 
             raise ValueError("Try filling series.")
     else:
         raise ValueError("Use an appropriate normalization method.")
-
 
 def series_to_pairedset(series: pd.Series) -> pairedset.PairedSet:
     '''
