@@ -1,10 +1,25 @@
 from __future__ import annotations
+from typing import Union, Optional, List, Any
+
 import numpy as np
 import pandas as pd
-from typing import Union, Optional, Any
 
 class PairedSet():
-    def __init__(self, indexing_array: Any = None, value_array: Any = None):
+    def __init__(self, indexing_array: Union[List, np.ndarray] = None, value_array: Union[List, np.ndarray] = None):
+        '''
+        Build 2D 2xn array where PairedSet[0] contains the indexing array (X-axis for plotting) and PairedSet[1] contains the values array
+        (Y-axis for plotting). 
+        
+        **Properties**
+        
+        Each index x, PairedSet[0][i] maps to the element y, PairedSet[1][i].
+
+        len(PairedSet[0]) = len(PairedSet[1])
+
+        **Usage**
+
+        Holding time series data in a more accessible data structure.
+        '''
         # handle array length issues
         if len(indexing_array)!=len(value_array):
             raise Exception("Arrays differ in length.")
@@ -14,6 +29,13 @@ class PairedSet():
 
     @property
     def combined(self) -> np.ndarray:
+        '''
+        Returns the 2xn numpy array.
+
+        **Usage**
+
+        Regular return type of a paired set object.
+        '''
         return np.array([self.X, self.Y])
     
     def __repr__(self) -> np.ndarray:
