@@ -74,6 +74,7 @@ health_care_securities = snp.get_securities_by_sector(sector="Health Care")
 from cogi_quant.instrument import stock
 from cogi_quant.processing import price_history
 from cogi_quant.mat import technicals
+from cogi_quant.mat import stats
 import matplotlib.pyplot as plt
 
 # Initialize instrument (Apple stock used as example)
@@ -82,16 +83,21 @@ AAPL = stock.Stock("AAPL")
 # Fetch 1-month open price history
 hist = price_history.get_price_open_series(stock=AAPL, period='1mo')
 
-# Construct respective market indicators
+# Construct respective market indicators for plotting
 ma_fast = technicals.simple_moving_average(hist, window=2)
 ma_slow = technicals.simple_moving_average(hist, window=5)
 rsi = technicals.rsi(hist, period=5)
+
+# Get statistical indicators for plotting
+min, max = stats.sup(hist), stats.inf(hist)
 
 # Plot visual
 plt.plot(hist, label='Open Price'))
 plt.plot(ma_fast, label='Fast Moving Avg')
 plt.plot(ma_slow, label='Slow Moving Avg')
 plt.plot(rsi, label='Relative Strength Index', linestyle='--')
+plt.axhline(y=min, label='Range-Low')
+plt.axhline(y=max, label='Range-High')
 plt.show()
 ```
 
