@@ -75,13 +75,15 @@ from cogi_quant.instrument import stock
 from cogi_quant.processing import price_history
 from cogi_quant.mat import technicals
 from cogi_quant.mat import stats
+from cogi_quant.processing import series
 import matplotlib.pyplot as plt
 
 # Initialize instrument (Apple stock used as example)
 AAPL = stock.Stock("AAPL")
 
-# Fetch 1-month open price history
-hist = price_history.get_price_open_series(stock=AAPL, period='1mo')
+# Fetch and clean 1-month open price history
+hist_raw = price_history.get_price_open_series(stock=AAPL, period='1mo')
+hist = series.fill(hist_raw)
 
 # Construct respective market indicators for plotting
 ma_fast = technicals.simple_moving_average(hist, window=2)
